@@ -1,4 +1,4 @@
 import { createStore } from 'redux'
-import { notesReducer } from './coordinatesReducer'
+import { notesReducer } from '../reducers/coordinatesReducer'
 
 export const store = createStore(notesReducer);

@@ -1,10 +1,10 @@
 interface Actions {
     type: string,
-    payload: google.maps.LatLngLiteral
+    payload: google.maps.Marker
 }
 
 export interface NotesState {
-    latLng: google.maps.LatLngLiteral[]
+    latLng: google.maps.Marker[]
 };
 
 const initialState = {
@@ -14,6 +14,7 @@ const initialState = {
 export const notesReducer = (state:NotesState = initialState, action:Actions ) => {
     switch(action.type) {
         case "ADD_COORDINATE": {
+            console.log('state', state);
             return { ...state, latLng: [ ...state.latLng, action.payload ] }
         }
         default:
