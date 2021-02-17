@@ -1,15 +1,13 @@
 import React from 'react';
-import initMap from './Map'
+import GoogleMap from './Map'
 
 function App() {
   return (
     <div className="App">
         App init
-        <div id="map"/>
+        <GoogleMap/>
     </div>
   );
 }
-
-initMap();
 
 export default App;

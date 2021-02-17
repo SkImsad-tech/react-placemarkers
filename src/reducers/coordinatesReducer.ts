@@ -3,7 +3,7 @@ interface Actions {
     payload: google.maps.Marker
 }
 
-export interface NotesState {
+export interface coordinateState {
     latLng: google.maps.Marker[]
 };
 
@@ -11,7 +11,7 @@ const initialState = {
     latLng: []
 }
 
-export const notesReducer = (state:NotesState = initialState, action:Actions ) => {
+export const notesReducer = (state:coordinateState = initialState, action:Actions ) => {
     switch(action.type) {
         case "ADD_COORDINATE": {
             console.log('state', state);
