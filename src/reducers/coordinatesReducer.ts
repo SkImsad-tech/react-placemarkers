@@ -1,21 +1,36 @@
+import { indexedMarker } from '../IfcindexedMarkers'
+
 interface Actions {
     type: string,
-    payload: google.maps.Marker
+    payload: indexedMarker
 }
 
 export interface coordinateState {
-    latLng: google.maps.Marker[]
+    markers: indexedMarker[]
 };
 
 const initialState = {
-    latLng: []
+    markers: []
 }
 
 export const notesReducer = (state:coordinateState = initialState, action:Actions ) => {
     switch(action.type) {
-        case "ADD_COORDINATE": {
+        case "ADD_MARKER": {
             console.log('state', state);
-            return { ...state, latLng: [ ...state.latLng, action.payload ] }
+            return { ...state, markers: [ ...state.markers, action.payload ] }
+        }
+        case "UPDATE_MARKER": {
+            return { ...state, markers: [ ...state.markers ] } // обновляем стейт, чтобы обновить компоненты.
+        }
+        case "DELETE_MARKER": {
+            state.markers
+            .splice(state.markers
+                .findIndex(marker =>
+                    marker.id === action.payload.id
+                ), 1
+            )
+
+            return { ...state, markers: [ ...state.markers ] }
         }
         default:
             return state;
