@@ -1,6 +1,6 @@
 import { indexedMarker } from '../IfcindexedMarkers'
 
-interface Actions {
+type Actions = {
     type: string,
     payload: indexedMarker
 }
@@ -16,11 +16,19 @@ const initialState = {
 export const notesReducer = (state:coordinateState = initialState, action:Actions ) => {
     switch(action.type) {
         case "ADD_MARKER": {
-            console.log('state', state);
             return { ...state, markers: [ ...state.markers, action.payload ] }
         }
         case "UPDATE_MARKER": {
             return { ...state, markers: [ ...state.markers ] } // обновляем стейт, чтобы обновить компоненты.
+        }
+        case "REPLACE_MARKER": {
+            state.markers
+            .splice(action.payload?.source || 0, 1)
+            
+            state.markers
+            .splice(action.payload?.destination || 0, 0, action.payload)
+
+            return { ...state, markers: [ ...state.markers ] }
         }
         case "DELETE_MARKER": {
             state.markers
